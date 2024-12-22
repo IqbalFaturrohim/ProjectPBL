@@ -9,25 +9,24 @@
             <h1 class="fw-bold mb-5">Website Pengenalan Goa Gajah</h1>
 
             <!-- Card Section -->
-            <div class="row justify-content-center g-4">
+            <div class="row justify-content-center g-lg-5">
                 <!-- Card Template -->
-                @for ($i = 0; $i < 5; $i++)
-                <div class="col-md-2">
-                    <div class="card bg-light border-0 shadow" style="margin-top: 50px;">
-                        <div class="card-img-top-wrapper" style="padding: 10px; background: white; border-radius: 10px;">
-                        <img src="{{ asset('img/Goa Gajah_ An Easy Ubud Day Trip.jpeg') }}" class="card-img-top" alt="Goa Gajah Temple">
-                        <div class="card-body text-center">
-                            <h5 class="card-title fw-bold">Goa Gajah Temple</h5>
-                            <p class="card-text">Pura Goa Gajah Ubud adalah...</p>
-                            <div class="text-end"> <!-- Tambahkan kelas text-end di sini -->
-                                <a href="#" class="btn btn-success btn-sm">Jelajahi</a>
-                            </div>
+                @foreach ($articles as $artikel)
+                <div class="col-md-6"> <!-- Menggunakan col-md-6 untuk tata letak responsif -->
+                    <div class="card border-0 shadow h-100">
+                        <div class="p-3"> <!-- Wrapper dengan padding untuk memberikan jarak -->
+                            <img src="{{ asset('storage/' . $artikel->gambar) }}" class="card-img-top rounded" alt="{{ $artikel->judul }}" style="object-fit: cover; max-height: 250px;">
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title text-center text-truncate">{{ $artikel->judul }}</h5>
+                            <p class="card-text text-truncate">{{ $artikel->deskripsi }}</p>
+                            <a href="{{ route('detail-artikel', $artikel->id) }}" class="btn btn-success btn-sm mt-auto">Jelajahi</a>
                         </div>
                     </div>
-                    </div>
                 </div>
-                @endfor
+                @endforeach
             </div>
+
         </div>
     </div>
 </div>

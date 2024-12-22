@@ -1,0 +1,16 @@
+.rating-container {
+    max-height: 300px; /* Tentukan tinggi maksimal kotak */
+    overflow-y: auto; /* Aktifkan scroll vertikal */
+    padding: 10px;
+    border: 1px solid #ddd; /* Opsional: Tambahkan border */
+    border-radius: 5px; /* Opsional: Beri efek melengkung */
+    background-color: #f9f9f9; /* Opsional: Warna latar */
+}
+.rating-item {
+    border-bottom: 1px solid #ddd; /* Opsional: Garis pemisah antar item */
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+.rating-item:last-child {
+    border-bottom: none; /* Hilangkan garis di item terakhir */
+}
