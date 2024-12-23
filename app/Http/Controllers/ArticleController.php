@@ -7,10 +7,10 @@ use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
-    // Menampilkan artikel di dashboard
+
     public function index()
     {
-        $articles = Article::with('ratings')->get();  // Mengambil semua data artikel dari database
+        $articles = Article::with('ratings')->get();
         return view('dashboard', compact('articles'));
     }
 
@@ -26,13 +26,13 @@ class ArticleController extends Controller
         return view('detail_artikel', compact('detailArticles'));
     }
 
-    // Menampilkan form untuk tambah artikel
+  
     public function create()
     {
         return view('create_artikel');
     }
 
-    // Menyimpan artikel baru ke dalam database
+
     public function store(Request $request)
     {
         $request->validate([
@@ -42,10 +42,8 @@ class ArticleController extends Controller
             'sejarah' => 'required|string',
         ]);
 
-        // Menyimpan gambar
         $gambarPath = $request->file('gambar')->store('images', 'public');
 
-        // Menyimpan artikel
         Article::create([
             'judul' => $request->judul,
             'deskripsi' => $request->deskripsi,
@@ -56,12 +54,11 @@ class ArticleController extends Controller
         return redirect()->route('dashboard')->with('success', 'Artikel berhasil ditambahkan.');
     }
 
-    // Menampilkan form untuk edit artikel
 
     public function edit($id)
     {
         $article = Article::findOrFail($id);
-        return view('edit_artikel', compact('article')); // Pastikan view bernama edit_artikel.blade.php
+        return view('edit_artikel', compact('article'));
     }
     
     public function update(Request $request, $id)
@@ -75,12 +72,10 @@ class ArticleController extends Controller
     
         $article = Article::findOrFail($id);
     
-        // Update fields
         $article->judul = $request->judul;
         $article->deskripsi = $request->deskripsi;
         $article->sejarah = $request->sejarah;
     
-        // Handle image upload if exists
         if ($request->hasFile('gambar')) {
             $imagePath = $request->file('gambar')->store('images', 'public');
             $article->gambar = $imagePath;
@@ -96,7 +91,6 @@ class ArticleController extends Controller
     {
         $article = Article::findOrFail($id);
 
-        // Hapus gambar jika ada
         if ($article->gambar && \Storage::exists('public/' . $article->gambar)) {
             \Storage::delete('public/' . $article->gambar);
         }

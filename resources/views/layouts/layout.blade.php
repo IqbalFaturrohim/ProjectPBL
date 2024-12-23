@@ -9,12 +9,44 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
+<style>
+    @if (Request::is('dashboard'))
+      html, body {
+        background: none; 
+      }
+    @else
+    html,body {
+        background-image: url('{{ asset('img/goagajah.jpg') }}');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+    }
+    @endif
+
+  footer {
+    position: relative; 
+    bottom: 0;
+    width: 100%;
+    margin-top: auto; 
+}
+
+
+  .container {
+  flex: 1; 
+  }
+</style>
 <body>
     @include('includes.navbar')
-    <div class="container">
+    <div class="container" >
         @yield('content')
     </div>
     @include('includes.footer')
+
+    
     <!-- Modal -->
     <div class="modal fade" id="ratingModal" tabindex="-1" aria-labelledby="ratingModalLabel" aria-hidden="true">
     <div class="modal-dialog">

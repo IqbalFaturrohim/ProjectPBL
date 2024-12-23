@@ -2,8 +2,7 @@
 @section('title', 'Halaman Utama')
 
 @section('content')
-<div class="position-relative" style="background-image: url('{{ asset('img/image 1.png') }}'); background-size: cover; background-position: center; height: 100vh; margin: 0; padding: 0;">
-    <div class="container d-flex flex-column justify-content-center align-items-center text-center text-white h-100">
+    <div class="container d-flex flex-column justify-content-center align-items-center text-center text-white min-vh-100">
         @if (session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
@@ -20,5 +19,4 @@
             <a href="{{ route('artikel') }}" class="btn btn-light btn-lg">Jelajahi!</a>
         </div>
     </div>
-</div>
 @endsection

@@ -9,7 +9,7 @@ class RatingController extends Controller
 {
     public function index()
     {
-        $ratings = Rating::all();  // Mengambil semua data artikel dari database
+        $ratings = Rating::all(); 
         return view('dashboard', compact('articles'));
     }
 

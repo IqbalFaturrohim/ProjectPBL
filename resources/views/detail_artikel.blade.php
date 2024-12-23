@@ -3,34 +3,35 @@
 @section('title', 'Detail Artikel')
 
 @section('content')
-<div class="container-fluid p-0" style="background: url('{{ asset('img/image 1.png') }}') no-repeat center center; background-size: cover;">
     <div class="container py-5">
 
         @if(session('success'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ session('success') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
+            <div class="alert alert-success alert-dismissible fade show mt-6" 
+                style="margin-top: 50px;" 
+                role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
         @endif
 
-        <!-- Kartu Deskripsi Artikel -->
-        <div class="card p-3 shadow">
+        <div class="card p-3 shadow mt-5">
             <div class="d-flex justify-content-start">
                 <div class="row g-0">
-                    <!-- Image -->
-                    <div class="col-md-4">
-                        <img src="{{ asset('storage/' . $detailArticles->gambar)}}" class="img-fluid rounded-start" alt="{{ $detailArticles->judul }}">
+
+                    <div class="col-md-3">
+                        <img src="{{ asset('storage/' . $detailArticles->gambar)}}" class="img-fluid rounded-start" style="width: 250px" alt="{{ $detailArticles->judul }}">
                     </div>
     
-                    <!-- Card Body with Title, Description, and Button -->
                     <div class="col-md-8">
                         <div class="card-body">
-                            <h5 class="card-title">{{ $detailArticles->judul }}</h5> <!-- Align title to the left -->
-                            <p class="card-text" style="margin-bottom: 20px;"> <!-- Align text to the left -->
+                            <h5 class="card-title">{{ $detailArticles->judul }}</h5> 
+                            <p class="card-text" style="text-align: justify">
                                 {{ $detailArticles->sejarah }}
                             </p>
-                            <div class="text-start mt-2"> <!-- Align button to the left -->
-                                <a href="{{ route('artikel') }}" class="btn btn-secondary">Kembali</a>
+                            <div class="text-start mt-2"> 
+                                <div class="text-end">
+                                    <a href="{{ route('artikel') }}" class="btn btn-secondary">Kembali</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -38,7 +39,6 @@
             </div>
         </div>
 
-        <!-- Tombol Beri Rating -->
         <div class="mt-4 w-100">
             <div class="bg-opacity-25 text-white py-2 d-flex justify-content-center">
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ratingModal">
@@ -47,7 +47,6 @@
             </div>
         </div>
 
-        <!-- Daftar Rating -->
         <div class="card mb-3 shadow mt-3">
             <div class="card-body">
                 <h5 class="card-title">Daftar Rating</h5>
@@ -72,7 +71,6 @@
     </div>
 </div>
 
-<!-- Modal Beri Rating -->
 <div class="modal fade" id="ratingModal" tabindex="-1" aria-labelledby="ratingModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -82,17 +80,14 @@
             </div>
             <div class="modal-body">
                 <form action="{{ route('rating.store') }}" method="POST">
-                    {{-- {{ route('rating.store') }} --}}
                     @csrf 
-
                     <input type="hidden" name="article_id" value="{{ $detailArticles->id }}">
 
-                    <!-- Form Nama -->
                     <div class="mb-3">
                         <label for="name" class="form-label">Nama</label>
                         <input type="text" class="form-control" id="name" name="name" required>
                     </div>
-                    <!-- Form Rating -->
+                    
                     <div class="mb-3">
                         <label for="rating" class="form-label">Rating</label>
                         <select class="form-select" id="rating" name="rating" required>
@@ -103,17 +98,16 @@
                             <option value="1">★☆☆☆☆</option>
                         </select>
                     </div>
-                    <!-- Form Komentar -->
+
                     <div class="mb-3">
                         <label for="comment" class="form-label">Komentar</label>
                         <textarea class="form-control" id="comment" name="comment" rows="3" required></textarea>
                     </div>
-                    <!-- Tombol Submit -->
+
                     <button type="submit" class="btn btn-primary">Submit</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
                 </form>
             </div>
         </div>
     </div>
-</div>
 @endsection

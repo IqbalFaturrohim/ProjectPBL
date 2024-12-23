@@ -1,7 +1,5 @@
 <?php
 
-// app/Http/Controllers/AuthController.php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -25,18 +23,18 @@ class AuthController extends Controller
         $user = User::where('username', $credentials['username'])->first();
 
         if ($user && $user->password === $credentials['password']) {
-            Auth::login($user);  // Proses login pengguna
-            session()->flash('success', 'Login berhasil!');  // Pesan sukses
+            Auth::login($user);  
+            session()->flash('success', 'Login berhasil!');  
             return redirect()->intended('/landing');
         }
 
-        session()->flash('error', 'Username atau password salah');  // Pesan gagal
+        session()->flash('error', 'Username atau password salah');  
         return back()->withErrors(['username' => 'Username atau password salah']);
     }
 
     public function logout(Request $request)
     {
-        Auth::logout();  // Logout pengguna
+        Auth::logout(); 
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 

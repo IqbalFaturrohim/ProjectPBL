@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content')
-<div class="container">
+<div class="container mt-5 pt-3">
     <h1 class="my-4">Dashboard</h1>
 
     @if (session('success'))
@@ -13,17 +13,15 @@
         </div>
     @endif
 
-    <!-- Tambah Artikel -->
     <a href="{{ route('article.create') }}" class="btn btn-primary mb-3">Tambah Artikel</a>
 
-    <!-- Tabel Artikel -->
     <table class="table">
         <thead>
             <tr>
                 <th>Judul</th>
                 <th>Deskripsi</th>
                 <th>Gambar</th>
-                <th>Rating</th> <!-- Kolom Rating -->
+                <th>Rating</th> 
                 <th>Opsi</th>
             </tr>
         </thead>
@@ -34,12 +32,11 @@
                     <td>{{ $article->deskripsi }}</td>
                     <td><img src="{{ asset('storage/' . $article->gambar) }}" width="100"></td>
 
-                    <!-- Tampilkan Rating Bintang -->
                     <td>
                         @php
-                            $averageRating = $article->ratings->avg('rating'); // Menghitung rata-rata rating
-                            $fullStars = floor($averageRating); // Bintang penuh
-                            $halfStar = $averageRating - $fullStars >= 0.5 ? true : false; // Cek apakah ada bintang setengah
+                            $averageRating = $article->ratings->avg('rating'); 
+                            $fullStars = floor($averageRating); 
+                            $halfStar = $averageRating - $fullStars >= 0.5 ? true : false; 
                         @endphp
 
                         <span class="text-warning">
