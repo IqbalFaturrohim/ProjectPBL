@@ -2,7 +2,7 @@
 @section('title', 'Edit Artikel')
 
 @section('content')
-<div class="container mt-5 mb-5">
+<div class="container mt-5 mb-5 pt-3">
     <h2>Edit Artikel</h2>
     
     <form action="{{ route('article.update', $article->id) }}" method="POST" enctype="multipart/form-data">
