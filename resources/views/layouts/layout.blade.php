@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <style>
-    @if (Request::is('dashboard'))
+    @if (Request::is('dashboard') || Request::is('dashboard/create'))
       html, body {
         background: none; 
       }

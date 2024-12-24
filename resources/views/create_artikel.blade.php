@@ -3,7 +3,7 @@
 @section('title', 'Tambah Artikel')
 
 @section('content')
-<div class="container">
+<div class="container mt-5 pt-3">
     <h1 class="my-4">Tambah Artikel</h1>
 
     <form action="{{ route('article.store') }}" method="POST" enctype="multipart/form-data">
